@@ -7,7 +7,8 @@ var assign = require('object-assign');
 var _ = require('lodash');
 var CHANGE_EVENT = 'change';
 
-var _droneControl = [];
+var _droneControl = {};
+var _apiLocation = {};
 
 var DroneControlStore = assign({}, EventEmitter.prototype, {
 	addChangeListener: function(callback) {
@@ -26,12 +27,12 @@ var DroneControlStore = assign({}, EventEmitter.prototype, {
 		return _droneControl;
 	},
 
-	getDroneDetails: function(apiLocation){
-		fetch("https://dev.flytbase.com/rest/ros/flytsim/mavros/global_position/global", { 
+	updateDrone: function() {
+		fetch( this._apiLocation.href, { 
 			method: "get", 
 			headers: new Headers({
-				"Authorization": "Token 4735f11275d02a9529859d7a6a8224b7418f82eb", 
-				"VehicleID": "0pOz4Wfj"
+				"Authorization": this._apiLocation.authorization, 
+				"VehicleID": this._apiLocation.vehicleID
 			})
 		}).then(function(response) {
 				return response.json();
@@ -41,6 +42,13 @@ var DroneControlStore = assign({}, EventEmitter.prototype, {
 				console.log("_droneControl", myJson);
 				DroneControlStore.emitChange();
 			});	
+		return _droneControl;
+	},
+
+
+	getDroneDetails: function(apiLocation){
+		this._apiLocation = apiLocation;
+		this.updateDrone();
 	}
 
 });
