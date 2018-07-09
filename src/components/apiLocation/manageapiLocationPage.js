@@ -1,11 +1,9 @@
-"use strict";
-
-var React = require('react');
-var Router = require('react-router');
-var APILocationForm = require('./apiLocationForm');
-var apiLocationAction = require('../../actions/apiLocationAction');
-var apiLocationStore = require('../../stores/apiLocationStore');
-var toastr = require('toastr');
+import React from 'react';
+import Router from 'react-router';
+import APILocationForm from './apiLocationForm';
+import apiLocationAction from '../../actions/apiLocationAction';
+import apiLocationStore from '../../stores/apiLocationStore';
+import toastr from 'toastr';
 
 var ManageapiLocationPage = React.createClass({
 	getInitialState: function() {

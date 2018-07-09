@@ -1,46 +1,45 @@
-"use strict";
+import React, { Component } from 'react';
 
-var React = require('react');
-var Router = require('react-router');
-var Link = require('react-router').Link;
-
+// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 var DroneControlStore = require('../../stores/droneControlStore');
 var DroneControlActions = require('../../actions/droneControlActions');
 
 
 
-var DroneControlPage = React.createClass({
-	getInitialState: function() {
-		return {
+class DroneControlPage extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
 			droneControl: DroneControlStore.getAllDroneControl()
 		};
-	},
+	}
 
-	componentWillMount: function() {
-		DroneControlStore.addChangeListener(this._onChange);
-	},
+	componentWillMount() {
+		DroneControlStore.addChangeListener(this._onChange.bind(this));
+	}
 	
 	//Clean up when this component is unmounted
-	componentWillUnmount: function() {
+	componentWillUnmount() {
 		DroneControlStore.removeChangeListener(this._onChange);
 		clearInterval(this.interval);
-	},
+	}
 
-	componentDidMount: function() {
+	componentDidMount() {
 		this.interval = setInterval( this.timer, 1000);
-	},
+	}
 
-	timer: function() {
+	timer() {
 		// setState method is used to update the state
 		DroneControlStore.updateDrone();
-	},
+	}
 
-	_onChange: function() {
+	_onChange() {
 		this.setState({ droneControl: DroneControlStore.getAllDroneControl() });
-	},
+	}
 
-	render: function() {
+	render() {
 		return (
 			<div>
 				<h1>Drone Control</h1>
@@ -48,10 +47,10 @@ var DroneControlPage = React.createClass({
 				<li>Latitude: {this.state.droneControl.latitude}</li>
 				<li>Longitude: {this.state.droneControl.longitude}</li>
 				<li>Altitude: {this.state.droneControl.altitude}</li>
-				</ul>			
+				</ul>
 			</div>
 		);
 	}
-});
+}
 
 module.exports = DroneControlPage;

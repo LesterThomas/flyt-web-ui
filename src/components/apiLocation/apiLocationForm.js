@@ -42,6 +42,5 @@ var apiLocationForm = React.createClass({
 		);
 	}
 });
-console.log('In API Location Form', this.props);
 
 module.exports = apiLocationForm;
