@@ -9,9 +9,7 @@ var InitializeActions = {
 		var defaultAuthorization = "Token 4735f11275d02a9529859d7a6a8224b7418f82eb";
 		var dispatchData = {
 			actionType: ActionTypes.INITIALIZE,
-			initialData: {
-				apiLocation: {href: defaultapiLocation, vehicleID: defaultVehicleID, authorization: defaultAuthorization}
-			}
+			apiLocation: {href: defaultapiLocation, vehicleID: defaultVehicleID, authorization: defaultAuthorization}
 		};
 		Dispatcher.dispatch(dispatchData);	
 	}

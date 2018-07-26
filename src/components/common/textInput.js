@@ -1,18 +1,10 @@
-"use strict";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-var React = require('react');
 
-var Input = React.createClass({
-  propTypes: {
-    name: React.PropTypes.string.isRequired,
-    label: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    placeholder: React.PropTypes.string,
-    value: React.PropTypes.string,
-    error: React.PropTypes.string
-  },
+class Input extends Component {
 
-  render: function () {
+  render() {
     var wrapperClass = 'form-group';
     if (this.props.error && this.props.error.length > 0) {
       wrapperClass += " " + 'has-error';
@@ -34,6 +26,15 @@ var Input = React.createClass({
       </div>
     );
   }
-});
+}
+
+Input.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  error: PropTypes.string
+};
 
 module.exports = Input;

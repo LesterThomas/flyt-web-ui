@@ -31,7 +31,7 @@ var apiLocationStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function(action) {
 	switch(action.actionType) {
 		case ActionTypes.INITIALIZE:
-			_apiLocation = action.initialData.apiLocation;
+			_apiLocation = action.apiLocation;
 			apiLocationStore.emitChange();
 			break;
 		case ActionTypes.UPDATE_APILOCATION:

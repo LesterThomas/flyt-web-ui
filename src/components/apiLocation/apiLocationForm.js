@@ -1,17 +1,11 @@
-"use strict";
+import Input from '../common/textInput';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-var React = require('react');
-var Input = require('../common/textInput');
 
-var apiLocationForm = React.createClass({
-	propTypes: {
-		apiLocation: React.PropTypes.object.isRequired,
-		onSave:	React.PropTypes.func.isRequired,
-		onChange: React.PropTypes.func.isRequired,
-		errors: React.PropTypes.object
-	},
+class apiLocationForm extends Component {
 
-	render: function() {
+	render() {
 		console.log('Rendering API Location Form', this.props);
 
 		return (
@@ -24,13 +18,13 @@ var apiLocationForm = React.createClass({
 					onChange={this.props.onChange}
 					error={this.props.errors.href} />
 				<Input
-					name="href"
+					name="vehicleID"
 					label="VehicleID"
 					value={this.props.apiLocation.vehicleID}
 					onChange={this.props.onChange}
 					error={this.props.errors.href} />
 				<Input
-					name="href"
+					name="authorization"
 					label="Authorization"
 					value={this.props.apiLocation.authorization}
 					onChange={this.props.onChange}
@@ -41,6 +35,14 @@ var apiLocationForm = React.createClass({
 			</form>
 		);
 	}
-});
+}
+
+apiLocationForm.propTypes = {
+	apiLocation: PropTypes.object.isRequired,
+	onSave:	PropTypes.func.isRequired,
+	onChange: PropTypes.func.isRequired,
+	errors: PropTypes.object
+};
+
 
 module.exports = apiLocationForm;

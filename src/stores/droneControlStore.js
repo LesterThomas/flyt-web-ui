@@ -56,10 +56,10 @@ var DroneControlStore = assign({}, EventEmitter.prototype, {
 Dispatcher.register(function(action) {
 	switch(action.actionType) {
 		case ActionTypes.INITIALIZE:
-			DroneControlStore.getDroneDetails(action.initialData.apiLocation);
+			DroneControlStore.getDroneDetails(action.apiLocation);
 			break;
 		case ActionTypes.UPDATE_APILOCATION:
-			DroneControlStore.getDroneDetails(action.initialData.apiLocation);
+			DroneControlStore.getDroneDetails(action.apiLocation);
 		break;
 		default:
 			// no op
